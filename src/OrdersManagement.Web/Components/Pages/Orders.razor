@@ -1,0 +1,59 @@
+﻿@page "/"
+
+<PageTitle>Pedidos</PageTitle>
+
+<div class="page-heading">
+    <h1>Pedidos</h1>
+    <button class="btn btn-secondary" @onclick="LoadAsync" disabled="@isLoading">Actualizar</button>
+</div>
+
+@if (errorMessage is not null)
+{
+    <div class="alert alert-error">@errorMessage</div>
+}
+
+@if (isLoading)
+{
+    <p class="loading">Cargando pedidos...</p>
+}
+else if (ordersPage is not null)
+{
+    @if (ordersPage.Items.Count == 0)
+    {
+        <div class="card empty">No existen pedidos registrados.</div>
+    }
+    else
+    {
+        <div class="card table-card">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Identificador</th>
+                        <th>Cliente</th>
+                        <th class="text-right">Total</th>
+                        <th>Fecha de creación</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in ordersPage.Items)
+                    {
+                        <tr>
+                            <td>@order.Id</td>
+                            <td>@order.Customer</td>
+                            <td class="text-right">@order.Total.ToString("N2")</td>
+                            <td>@order.CreatedAt.ToLocalTime().ToString("dd/MM/yyyy HH:mm")</td>
+                            <td><span class="badge @StatusCss(order.Status)">@StatusText(order.Status)</span></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pager">
+            <button class="btn btn-secondary" @onclick="PreviousPageAsync" disabled="@(ordersPage.PageNumber <= 1)">Anterior</button>
+            <span>Página @ordersPage.PageNumber de @ordersPage.TotalPages (@ordersPage.TotalCount pedidos)</span>
+            <button class="btn btn-secondary" @onclick="NextPageAsync" disabled="@(ordersPage.PageNumber >= ordersPage.TotalPages)">Siguiente</button>
+        </div>
+    }
+}

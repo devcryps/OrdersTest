@@ -1,0 +1,95 @@
+﻿@page "/nuevo"
+
+<PageTitle>Nuevo pedido</PageTitle>
+
+<h1>Nuevo pedido</h1>
+
+@if (successMessage is not null)
+{
+    <div class="alert alert-success">@successMessage <a href="">Ver listado</a></div>
+}
+
+@if (errors.Count > 0)
+{
+    <div class="alert alert-error">
+        <ul>
+            @foreach (var error in errors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+<EditForm Model="order" OnValidSubmit="SaveAsync" class="card">
+    <DataAnnotationsValidator />
+
+    <div class="field">
+        <label for="customer">Cliente</label>
+        <InputText id="customer" @bind-Value="order.Customer" />
+        <ValidationMessage For="() => order.Customer" />
+    </div>
+
+    <h2>Ítems</h2>
+
+    <div class="item-row">
+        <div class="field grow">
+            <label for="description">Descripción</label>
+            <input id="description" type="text" @bind="newItem.Description" />
+        </div>
+        <div class="field">
+            <label for="quantity">Cantidad</label>
+            <input id="quantity" type="number" min="1" @bind="newItem.Quantity" />
+        </div>
+        <div class="field">
+            <label for="unitPrice">Precio unitario</label>
+            <input id="unitPrice" type="number" min="0" step="0.01" @bind="newItem.UnitPrice" />
+        </div>
+        <button type="button" class="btn btn-secondary" @onclick="AddItem">Agregar ítem</button>
+    </div>
+
+    @if (itemError is not null)
+    {
+        <div class="validation-message">@itemError</div>
+    }
+
+    @if (order.Items.Count == 0)
+    {
+        <p class="muted">Aún no se han agregado ítems.</p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Descripción</th>
+                    <th class="text-right">Cantidad</th>
+                    <th class="text-right">Precio unitario</th>
+                    <th class="text-right">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in order.Items)
+                {
+                    <tr>
+                        <td>@item.Description</td>
+                        <td class="text-right">@item.Quantity</td>
+                        <td class="text-right">@item.UnitPrice.ToString("N2")</td>
+                        <td class="text-right">@item.Subtotal.ToString("N2")</td>
+                        <td class="text-right">
+                            <button type="button" class="btn btn-link" @onclick="() => RemoveItem(item)">Quitar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+    <div class="form-footer">
+        <strong>Total: @order.Total.ToString("N2")</strong>
+        <button type="submit" class="btn btn-primary" disabled="@isSaving">
+            @(isSaving ? "Guardando..." : "Guardar pedido")
+        </button>
+    </div>
+</EditForm>

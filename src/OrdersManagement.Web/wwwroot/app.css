@@ -1,0 +1,84 @@
+﻿:root {
+    --color-primary: #1f4e9c;
+    --color-primary-dark: #173a75;
+    --color-bg: #f4f6fa;
+    --color-border: #dde2ea;
+    --color-text: #1d2433;
+    --color-muted: #6b7587;
+    --color-error: #b3261e;
+    --color-success: #1e7a46;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+h1 { font-size: 1.6rem; margin: 1.5rem 0 1rem; }
+h1:focus { outline: none; }
+h2 { font-size: 1.15rem; margin: 1.5rem 0 0.75rem; }
+
+.container { max-width: 960px; margin: 0 auto; padding: 0 1rem 2rem; }
+
+.app-header { background: var(--color-primary); color: #fff; }
+.app-header-content { display: flex; align-items: center; justify-content: space-between; padding-top: 0.9rem; padding-bottom: 0.9rem; }
+.app-title { font-weight: 600; font-size: 1.1rem; }
+.app-nav a { color: #cfdcf5; text-decoration: none; margin-left: 1.25rem; padding-bottom: 0.2rem; }
+.app-nav a.active { color: #fff; border-bottom: 2px solid #fff; }
+
+.page-heading { display: flex; align-items: center; justify-content: space-between; }
+
+.card { background: #fff; border: 1px solid var(--color-border); border-radius: 8px; padding: 1.25rem; }
+.table-card { padding: 0; overflow-x: auto; }
+.empty { text-align: center; color: var(--color-muted); }
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: 0.65rem 0.9rem; border-bottom: 1px solid var(--color-border); text-align: left; }
+.table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--color-muted); background: #fafbfd; }
+.table tr:last-child td { border-bottom: none; }
+.text-right { text-align: right !important; }
+
+.badge { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.badge-success { background: #dff3e7; color: var(--color-success); }
+.badge-warning { background: #fdf0d5; color: #8a5a00; }
+
+.pager { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-top: 1rem; color: var(--color-muted); }
+
+.btn { border: 1px solid transparent; border-radius: 6px; padding: 0.5rem 1rem; font-size: 0.95rem; cursor: pointer; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-primary:hover:not(:disabled) { background: var(--color-primary-dark); }
+.btn-secondary { background: #fff; color: var(--color-primary); border-color: var(--color-primary); }
+.btn-link { background: none; color: var(--color-error); padding: 0; }
+
+.field { display: flex; flex-direction: column; margin-bottom: 0.75rem; }
+.field label { font-size: 0.85rem; margin-bottom: 0.25rem; color: var(--color-muted); }
+.field input { padding: 0.5rem 0.65rem; border: 1px solid var(--color-border); border-radius: 6px; font-size: 0.95rem; }
+.field input:focus { outline: 2px solid #b9cdf0; border-color: var(--color-primary); }
+.item-row { display: flex; gap: 0.75rem; align-items: flex-end; flex-wrap: wrap; }
+.item-row .field { margin-bottom: 0; }
+.item-row .btn { margin-bottom: 1px; }
+.grow { flex: 1; min-width: 180px; }
+
+.form-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+
+.alert { padding: 0.75rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+.alert ul { margin: 0; padding-left: 1.2rem; }
+.alert-error { background: #fbe4e2; color: var(--color-error); }
+.alert-success { background: #dff3e7; color: var(--color-success); }
+
+.validation-message { color: var(--color-error); font-size: 0.85rem; margin-top: 0.4rem; }
+.muted, .loading { color: var(--color-muted); }
+
+.valid.modified:not([type=checkbox]) { outline: 1px solid #26b050; }
+.invalid { outline: 1px solid var(--color-error); }
+
+#blazor-error-ui {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000;
+    background: #fff3cd; padding: 0.6rem 1.25rem; box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+}
+#blazor-error-ui .dismiss { cursor: pointer; position: absolute; right: 0.75rem; top: 0.5rem; }

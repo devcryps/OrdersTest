@@ -1,0 +1,21 @@
+﻿@inherits LayoutComponentBase
+
+<header class="app-header">
+    <div class="container app-header-content">
+        <span class="app-title">Gestión de Pedidos</span>
+        <nav class="app-nav">
+            <NavLink href="" Match="NavLinkMatch.All">Pedidos</NavLink>
+            <NavLink href="nuevo">Nuevo pedido</NavLink>
+        </nav>
+    </div>
+</header>
+
+<main class="container">
+    @Body
+</main>
+
+<div id="blazor-error-ui">
+    Ocurrió un error inesperado.
+    <a href="" class="reload">Recargar</a>
+    <a class="dismiss">🗙</a>
+</div>
