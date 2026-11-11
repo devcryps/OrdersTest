@@ -1,0 +1,83 @@
+# Salida de compilación
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+artifacts/
+publish/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.DotSettings.user
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# Pruebas y cobertura
+TestResults/
+[Tt]est[Rr]esult*/
+coverage/
+*.coverage
+*.coveragexml
+coverage.*.xml
+*.trx
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+
+# Archivos de configuración local y secretos
+# (la plantilla appsettings.Development.example.json sí se versiona)
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+secrets.json
+.env
+.env.*
+!.env.example
+launchSettings.local.json
+*.pfx
+*.key
+*.pem
+*.p12
+
+# Logs y temporales
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# Herramientas locales (RabbitMQ portable, descargas)
+Tools/
+*.zip
+*.tar.gz
+*.7z
+
+# Node (si se agregan assets de frontend)
+node_modules/
+npm-debug.log*
+
+# Datos locales de contenedores y bases de datos
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+oracle-data/
+rabbitmq-data/
+redis-data/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
